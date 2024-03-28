@@ -33,8 +33,7 @@ def scatter_inside(x, y, beta=0.15):
 
 def shrink(x, y, ratio):
 
-    force = -1 / (((x - CANVAS_CENTER_X) ** 2 + (y - CANVAS_CENTER_Y) ** 2) **
-                  0.6)
+    force = -1 / (((x - CANVAS_CENTER_X) ** 2 + (y - CANVAS_CENTER_Y) ** 2) ** 0.6)
     dx = ratio * force * (x - CANVAS_CENTER_X)
     dy = ratio * force * (y - CANVAS_CENTER_Y)
     return x - dx, y - dy

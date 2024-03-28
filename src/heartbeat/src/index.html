@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <link rel="icon" href="../assets/heart.png" type="image/png" />
     <!-- <link rel="stylesheet" href="./index.css" /> -->
@@ -55,8 +55,7 @@
         left: 100px;
         transform: rotate(-45deg);
         transform-origin: 0 100%;
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-          0 10px 10px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
       }
 
       #pinkboard:after {
@@ -114,8 +113,7 @@
           return new Point(this.x, this.y);
         };
         Point.prototype.length = function (length) {
-          if (typeof length == "undefined")
-            return Math.sqrt(this.x * this.x + this.y * this.y);
+          if (typeof length == "undefined") return Math.sqrt(this.x * this.x + this.y * this.y);
           this.normalize();
           this.x *= length;
           this.y *= length;
@@ -161,13 +159,7 @@
           }
           var size = image.width * ease(this.age / settings.particles.duration);
           context.globalAlpha = 1 - this.age / settings.particles.duration;
-          context.drawImage(
-            image,
-            this.position.x - size / 2,
-            this.position.y - size / 2,
-            size,
-            size
-          );
+          context.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size);
         };
         return Particle;
       })();
@@ -183,8 +175,7 @@
         function ParticlePool(length) {
           // create and populate particle pool
           particles = new Array(length);
-          for (var i = 0; i < particles.length; i++)
-            particles[i] = new Particle();
+          for (var i = 0; i < particles.length; i++) particles[i] = new Particle();
         }
         ParticlePool.prototype.add = function (x, y, dx, dy) {
           particles[firstFree].initialize(x, y, dx, dy);
@@ -200,20 +191,15 @@
 
           // update active particles
           if (firstActive < firstFree) {
-            for (i = firstActive; i < firstFree; i++)
-              particles[i].update(deltaTime);
+            for (i = firstActive; i < firstFree; i++) particles[i].update(deltaTime);
           }
           if (firstFree < firstActive) {
-            for (i = firstActive; i < particles.length; i++)
-              particles[i].update(deltaTime);
+            for (i = firstActive; i < particles.length; i++) particles[i].update(deltaTime);
             for (i = 0; i < firstFree; i++) particles[i].update(deltaTime);
           }
 
           // remove inactive particles
-          while (
-            particles[firstActive].age >= duration &&
-            firstActive != firstFree
-          ) {
+          while (particles[firstActive].age >= duration && firstActive != firstFree) {
             firstActive++;
             if (firstActive == particles.length) firstActive = 0;
           }
@@ -221,12 +207,10 @@
         ParticlePool.prototype.draw = function (context, image) {
           // draw active particles
           if (firstActive < firstFree) {
-            for (i = firstActive; i < firstFree; i++)
-              particles[i].draw(context, image);
+            for (i = firstActive; i < firstFree; i++) particles[i].draw(context, image);
           }
           if (firstFree < firstActive) {
-            for (i = firstActive; i < particles.length; i++)
-              particles[i].draw(context, image);
+            for (i = firstActive; i < particles.length; i++) particles[i].draw(context, image);
             for (i = 0; i < firstFree; i++) particles[i].draw(context, image);
           }
         };
@@ -238,19 +222,14 @@
       (function (canvas) {
         var context = canvas.getContext("2d"),
           particles = new ParticlePool(settings.particles.length),
-          particleRate =
-            settings.particles.length / settings.particles.duration, // particles/sec
+          particleRate = settings.particles.length / settings.particles.duration, // particles/sec
           time;
 
         // get point on heart with -PI <= t <= PI
         function pointOnHeart(t) {
           return new Point(
             160 * Math.pow(Math.sin(t), 3),
-            130 * Math.cos(t) -
-              50 * Math.cos(2 * t) -
-              20 * Math.cos(3 * t) -
-              10 * Math.cos(4 * t) +
-              25
+            130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
           );
         }
 
@@ -263,12 +242,8 @@
           // helper function to create the path
           function to(t) {
             var point = pointOnHeart(t);
-            point.x =
-              settings.particles.size / 2 +
-              (point.x * settings.particles.size) / 350;
-            point.y =
-              settings.particles.size / 2 -
-              (point.y * settings.particles.size) / 350;
+            point.x = settings.particles.size / 2 + (point.x * settings.particles.size) / 350;
+            point.y = settings.particles.size / 2 - (point.y * settings.particles.size) / 350;
             return point;
           }
           // create the path
@@ -309,12 +284,7 @@
           for (var i = 0; i < amount; i++) {
             var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
             var dir = pos.clone().length(settings.particles.velocity);
-            particles.add(
-              canvas.width / 2 + pos.x,
-              canvas.height / 2 - pos.y,
-              dir.x,
-              -dir.y
-            );
+            particles.add(canvas.width / 2 + pos.x, canvas.height / 2 - pos.y, dir.x, -dir.y);
           }
 
           // update and draw particles
@@ -349,8 +319,7 @@
         align-items: center;
         justify-content: center;
         margin-bottom: 50px;
-        text-shadow: 0 0 10px rgb(225 12 168), 0 0 10px rgb(225 12 168),
-          0 0 10px rgb(225 12 168);
+        text-shadow: 0 0 10px rgb(225 12 168), 0 0 10px rgb(225 12 168), 0 0 10px rgb(225 12 168);
         text-align: center;
       "
     >
