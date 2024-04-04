@@ -1,0 +1,67 @@
+:root {
+  --unknown-size-heart: 200px;
+  --unknown-radius-heart: calc(var(--unknown-size-heart) / 2);
+  --unknown-background-all-black: #fff;
+  --color-heart: #ff0000;
+  --color-box-shadow: #ff0000;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 92vh;
+  background: var(--unknown-background-all-black);
+}
+
+.heart {
+  height: var(--unknown-size-heart);
+  width: var(--unknown-size-heart);
+  background: var(--color-heart);
+  position: relative;
+  transform: rotate(-45deg);
+  box-shadow: -10px 10px 90px var(--color-box-shadow);
+  animation: heart 0.6s linear infinite;
+}
+
+@keyframes heart {
+  0% {
+    transform: rotate(-45deg) scale(1.2);
+  }
+  25% {
+    transform: rotate(-45deg) scale(1.1);
+  }
+  50% {
+    transform: rotate(-45deg) scale(1);
+  }
+  75% {
+    transform: rotate(-45deg) scale(0.9);
+  }
+  100% {
+    transform: rotate(-45deg) scale(0.8);
+  }
+}
+
+.heart::before {
+  content: "";
+  position: absolute;
+  height: var(--unknown-size-heart);
+  width: var(--unknown-size-heart);
+  background: var(--color-heart);
+  top: -55%;
+  border-radius: var(--unknown-radius-heart);
+  box-shadow: -10px 10px 90px var(--color-box-shadow);
+}
+
+.heart::after {
+  content: "";
+  position: absolute;
+  height: var(--unknown-size-heart);
+  width: var(--unknown-size-heart);
+  background: var(--color-heart);
+  right: -55%;
+  border-radius: var(--unknown-radius-heart);
+  box-shadow: -10px 10px 90px var(--color-box-shadow);
+}
