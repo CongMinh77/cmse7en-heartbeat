@@ -128,3 +128,11 @@ var ParticlePool = (function () {
   };
   return ParticlePool;
 })();
+
+$(document).ready(function () {
+  const HeartElement = {
+    hiddenCanvas: $("#hiddenCanvas"),
+    pinkBoardElement: $("#pinkBoard"),
+    wrapCanvas: $("#wrapCanvas"),
+  };
+});
