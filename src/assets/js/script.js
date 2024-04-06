@@ -1,7 +1,7 @@
 /*
  * Settings
  */
-var settings = {
+let settings = {
   particles: {
     length: 2000, // maximum amount of particles
     duration: 2, // particle duration in sec
@@ -16,7 +16,7 @@ var settings = {
 /*
  * Point class
  */
-var Point = (function () {
+let Point = (function () {
   function Point(x, y) {
     this.x = typeof x !== "undefined" ? x : 0;
     this.y = typeof y !== "undefined" ? y : 0;
@@ -32,7 +32,7 @@ var Point = (function () {
     return this;
   };
   Point.prototype.normalize = function () {
-    var length = this.length();
+    let length = this.length();
     this.x /= length;
     this.y /= length;
     return this;
@@ -42,7 +42,7 @@ var Point = (function () {
 /*
  * Particle class
  */
-var Particle = (function () {
+let Particle = (function () {
   function Particle() {
     this.position = new Point();
     this.velocity = new Point();
@@ -69,7 +69,7 @@ var Particle = (function () {
     function ease(t) {
       return --t * t * t + 1;
     }
-    var size = image.width * ease(this.age / settings.particles.duration);
+    let size = image.width * ease(this.age / settings.particles.duration);
     context.globalAlpha = 1 - this.age / settings.particles.duration;
     context.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size);
   };
@@ -78,8 +78,8 @@ var Particle = (function () {
 /*
  * ParticlePool class
  */
-var ParticlePool = (function () {
-  var particles,
+let ParticlePool = (function () {
+  let particles,
     firstActive = 0,
     firstFree = 0,
     duration = settings.particles.duration;
@@ -87,7 +87,7 @@ var ParticlePool = (function () {
   function ParticlePool(length) {
     // create and populate particle pool
     particles = new Array(length);
-    for (var i = 0; i < particles.length; i++) particles[i] = new Particle();
+    for (let i = 0; i < particles.length; i++) particles[i] = new Particle();
   }
   ParticlePool.prototype.add = function (x, y, dx, dy) {
     particles[firstFree].initialize(x, y, dx, dy);
@@ -99,7 +99,7 @@ var ParticlePool = (function () {
     if (firstActive == particles.length) firstActive = 0;
   };
   ParticlePool.prototype.update = function (deltaTime) {
-    var i;
+    let i;
 
     // update active particles
     if (firstActive < firstFree) {
