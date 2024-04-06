@@ -128,3 +128,9 @@ let ParticlePool = (function () {
   };
   return ParticlePool;
 })();
+
+$(document).ready(function () {
+  $(".title").on("click", function () {
+    console.debug("Hellooo");
+  });
+});

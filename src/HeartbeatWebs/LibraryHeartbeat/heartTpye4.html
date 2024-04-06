@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
 
@@ -231,9 +231,7 @@ void main(){
 
       gl.useProgram(program);
 
-      var vertexData = new Float32Array([
-        -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, -1.0,
-      ]);
+      var vertexData = new Float32Array([-1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, -1.0]);
 
       var vertexDataBuffer = gl.createBuffer();
       gl.bindBuffer(gl.ARRAY_BUFFER, vertexDataBuffer);
