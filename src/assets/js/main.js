@@ -18,15 +18,15 @@ $(document).ready(function () {
   }, timeProgress);
 
   element.cancelButton.on("click", function () {
+    const url = window.location.href;
     axios({
       method: "get",
-      url: "http://127.0.0.1:5500/src/HeartbeatWebs/LibraryHeartbeat/heartType6.html",
+      url: `http://${url.slice(7, url.length).split("/")[0]}/HeartbeatWebs/LibraryHeartbeat/heartType6.html`,
       responseType: "stream",
     }).then(function (response) {
       const a = response.data;
       element.main.html(a);
-
-      console.debug("a", a);
     });
+    console.debug("no no");
   });
 });
