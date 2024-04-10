@@ -6,6 +6,7 @@ $(document).ready(function () {
     wrapProgressBar: $("#wrapProgressBar"),
     cancelButton: $("#cancelButton"),
     main: $("#main"),
+    acceptButton: $("#acceptButton"),
   };
 
   const timeProgress = 5000;
@@ -17,16 +18,19 @@ $(document).ready(function () {
     element.wrapMessage.css("display", "inline-block");
   }, timeProgress);
 
-  element.cancelButton.on("click", function () {
+  element.acceptButton.on("click", function () {
     const url = window.location.href;
     axios({
       method: "get",
-      url: `http://${url.slice(7, url.length).split("/")[0]}/HeartbeatWebs/LibraryHeartbeat/heartType6.html`,
+      url: `${url}/HeartbeatWebs/LibraryHeartbeat/heartType6.html`,
       responseType: "stream",
     }).then(function (response) {
       const a = response.data;
       element.main.html(a);
     });
+  });
+
+  element.cancelButton.on("mousemove", function () {
     console.debug("no no");
   });
 });
