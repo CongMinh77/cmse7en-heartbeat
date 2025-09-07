@@ -31,6 +31,16 @@ $(document).ready(function () {
   });
 
   element.cancelButton.on("mousemove", function () {
-    console.debug("no no");
+    let width = $(this).width();
+    width -= 10;
+    if (width <= 0) {
+      $(this).hide();
+    } else {
+      $(this).css({
+        width: width + "px",
+        left: Math.random() * (window.innerWidth - width) + "px",
+        top: Math.random() * (window.innerHeight - $(this).height()) + "px",
+      });
+    }
   });
 });
