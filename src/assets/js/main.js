@@ -22,7 +22,7 @@ $(document).ready(function () {
     const url = window.location.href;
     axios({
       method: "get",
-      url: `${url}/HeartbeatWebs/LibraryHeartbeat/heartType8.html`,
+      url: `${url}/HeartbeatWebs/LibraryHeartbeat/heartType6.html`,
       responseType: "stream",
     }).then(function (response) {
       const a = response.data;
